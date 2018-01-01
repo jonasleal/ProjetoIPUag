@@ -13,7 +13,7 @@ class DOMFuncionario(object):
             
     def salvar(self, funcionario):
         
-        if not isinstance(funcionario , Cliente):
+        if not isinstance(funcionario , Funcionario):
             raise TipoInvalidoException("Nao e um funcionario")
         
         ident = GerarId().proximo()
@@ -42,7 +42,7 @@ class DOMFuncionario(object):
                 funcionario = self.__criarFuncionario(linha)
         return funcionario
     
-    def buscarPorCpf(self, pis):
+    def buscarPorPis(self, pis):
         pis = str(pis)
         funcionario = None
         arquivo = open(self.caminho + self.nomeArq,"r")
@@ -63,14 +63,4 @@ class DOMFuncionario(object):
             if int(linha[0]) == ident:
                 funcionario = self.__criarFuncionario(linha)
         return funcionario
-        
-#    def login(self, CpfCli, SenhaCli):
-#        arq = open(self.caminho + self.nomeArq, 'r')
-#        lista = arq.readlines()
-#        usuario = None
-#        for i in range(len(lista)):
-#            iD = lista[i].split(self.separador)
-#            if iD[1] == str(CpfCli) and iD[3] == SenhaCli:
-#                usuario = self.__criarCliente(iD)
-#        return usuario
-        
+   

@@ -3,13 +3,13 @@ from entidades.Funcionario import *
 from dados.DOM.DOMFuncionario import *
 from dados.RepositorioFuncionario import *
 
-class GestaoCliente(object):
+class GestaoFuncionario(object):
     def __init__(self):
         self.repFuncionario = RepositorioFuncionario(DOMFuncionario())
     
     def cadastrar(self, funcionario):
         
-        if not isinstance(funcionario, Cliente):
+        if not isinstance(funcionario, Funcionario):
             raise TipoInvalidoException("Nao e um funcionario")
         
         tempFuncionario = self.repFuncionario.buscarPorCpf(funcionario.getCpf())
@@ -18,6 +18,7 @@ class GestaoCliente(object):
             raise JaCadastradoException("CPF %s ja cadastrado." % (funcionario.getCpf()))
         
         return self.repFuncionario.salvar(funcionario)
+    
     
     def recuperarPorCpf(self, cpf):
         

@@ -1,4 +1,3 @@
-from negocio.Excecoes import *
 
 class Usuario():
     def __init__(self, senha):

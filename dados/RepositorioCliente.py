@@ -12,4 +12,5 @@ class RepositorioCliente(object):
         return self.dados.recuperar( ident)
 #    
 #    def login(self, CpfCli, SenhaCli):
+
 #        return self.dados.login( CpfCli, SenhaCli)

@@ -1,0 +1,3 @@
+17;teste;G;tipo1;genero;50.0;0;10
+18;teste;G;tipo1;genero;50.0;0;10
+19;teste;G;tipo1;genero;50.0;0;10

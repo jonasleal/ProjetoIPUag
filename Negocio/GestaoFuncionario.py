@@ -1,14 +1,14 @@
-from negocio.Excecoes import *
-from entidades.Funcionario import *
-from dados.DOM.DOMFuncionario import *
-from dados.RepositorioFuncionario import *
+from Negocio.Excecoes import *
+from Entidades.Funcionario import *
+from Entidades.Usuario import *
+from Dados.DOM.DOMFuncionario import *
+from Dados.RepositorioFuncionario import *
 
 class GestaoFuncionario(object):
     def __init__(self):
         self.repFuncionario = RepositorioFuncionario(DOMFuncionario())
     
     def cadastrar(self, funcionario):
-        
         if not isinstance(funcionario, Funcionario):
             raise TipoInvalidoException("Nao e um funcionario")
         
@@ -30,9 +30,12 @@ class GestaoFuncionario(object):
         pis = str(pis)
         return self.repFuncionario.buscarPorPis(pis)
     
-    def login(self,cpf , senha):
-        cpf = str(cpf)
-        senha = str(senha)
+    def login(self,usuario):
+        if not isinstance(usuario, Usuario):
+            raise TipoInvalidoException("Nao e um usuario")
+        cpf = str(usuario.getCpf())
+        senha = str(usuario.getSenha())
+        
         funcionario = self.repFuncionario.buscarPorCpf(cpf)
         if funcionario == None:
             raise CpfInvalidoException("CPF informado nao encontrado")
@@ -48,4 +51,12 @@ class GestaoFuncionario(object):
             raise TipoInvalidoException("Ja e gerente.")
         gerente = Gerente(funcionario)
         return self.repFuncionario.alterar(gerente)
+    
+    def revogarGerente(self, gerente):
+        if not isinstance(gerente, Funcionario):
+            raise TipoInvalidoException("Nao e um funcionario.")
+        if not isinstance(gerente, Gerente):
+            raise TipoInvalidoException("Nao e um gerente.")
+        funcionario = Funcionario(gerente.getCpf(), gerente.getNome(),gerente.getSenha(), gerente.getPis(),  gerente.getIdent())
+        return self.repFuncionario.alterar(funcionario)
         

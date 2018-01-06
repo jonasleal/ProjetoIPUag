@@ -1,63 +1,76 @@
 #Entidades
-from entidades.Cliente import *
-from entidades.Gerente import *
-from entidades.Usuario import *
-from entidades.Funcionario import *
+from Entidades.Cliente import *
+from Entidades.Gerente import *
+from Entidades.Usuario import *
+from Entidades.Funcionario import *
 #DOMs
-from dados.DOM.DOMCliente import *
-from dados.DOM.DOMFuncionario import *
+from Dados.DOM.DOMCliente import *
+from Dados.DOM.DOMFuncionario import *
 #Negocio
-from negocio.GestaoCliente import *
-from negocio.GestaoFuncionario import *
+from Negocio.GestaoCliente import *
+from Negocio.GestaoFuncionario import *
 #Excecoes
-from negocio.Excecoes import *
+from Negocio.Excecoes import *
+#Fachada
+from Fachada.Fachada import *
 
 
 
 
-def testarCliente(gCliente, cliente):
+def testarCliente(fachada, cliente):
     try:
-        gCliente.cadastrar(cliente)
+        fachada.cadastrarCliente(cliente)
     except(TipoInvalidoException, JaCadastradoException) as e:
         print e.getMessage()
 
     try:
-        logado = gCliente.login(cliente.getCpf(), cliente.getSenha())
+        logado = fachada.loginCliente(cliente)
         print logado.getIdent()
     except (CpfInvalidoException, SenhaInvalidoException) as e:
         print e.getMessage()
         
-def testarFuncionario(gFuncionario, funcionario):
+def testarFuncionario(fachada, funcionario):
     try:
-        gFuncionario.cadastrar(funcionario)
+        fachada.cadastrarFuncionario(funcionario)
     except(TipoInvalidoException, JaCadastradoException) as e:
         print e.getMessage()
 
     try:
-        logado = gFuncionario.login(funcionario.getCpf(), funcionario.getSenha())
+        logado = fachada.loginFuncionario(funcionario)
         print logado.getIdent()
         print isinstance(logado , Gerente)
         return logado
     except (CpfInvalidoException, SenhaInvalidoException) as e:
         print e.getMessage()
 
-def testarPromover(gFuncionario, funcionario):
+def testarPromover(fachada, funcionario):
     try:
-        gFuncionario.tornarGerente(funcionario)
+        funcionario = fachada.promoverFuncionario(funcionario)
     except ( TipoInvalidoException) as e:
         print e.getMessage()
-        
+    return funcionario
+
+def testarRevogarPromocao(fachada, funcionario):
+    try:
+        funcionario = fachada.revogarGerencia(funcionario)
+    except ( TipoInvalidoException) as e:
+        print e.getMessage()
+    return funcionario
         
 f = Funcionario("123456", "Jonas","password", "654321")
 f2 = Funcionario("824", "Jonas", "654321", "password")
 c = Cliente("106", "Jonas Jr", "senha")
-
+fachada = Fachada()
 
 print "------ Cliente --------"
-testarCliente(GestaoCliente(), c)
+testarCliente(fachada, c)
 print "------ Funcionario --------"
-testarFuncionario(GestaoFuncionario(), f2)
-f = testarFuncionario(GestaoFuncionario(), f)
+testarFuncionario(fachada, f2)
+f = testarFuncionario(fachada, f)
 print "------ Promover --------"
-testarPromover(GestaoFuncionario(), f)
+f = testarPromover(fachada, f)
+print type(f)
+print "------ Despromover --------"
+f = testarRevogarPromocao(fachada, f)
+print type(f)
 print "fim"

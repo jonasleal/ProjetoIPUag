@@ -2,7 +2,7 @@ from GerarId import *
 from GerarArquivo import *
 from Entidades.Funcionario import *
 from Entidades.Gerente import *
-from negocio.Excecoes import *
+from Negocio.Excecoes import *
 
 class DOMFuncionario(object):
     def __init__(self, caminho="dados/banco/", nomeArq="Funcionarios"):
@@ -94,4 +94,5 @@ class DOMFuncionario(object):
         arquivo.close()
         arquivo = open(self.caminho + self.nomeArq,"w")
         arquivo.writelines(linhas)
+        arquivo.close()
         return funcionario

@@ -1,7 +1,7 @@
 from GerarId import *
 from GerarArquivo import *
 from Entidades.Cliente import *
-from negocio.Excecoes import *
+from Negocio.Excecoes import *
 
 class DOMCliente(object):
     def __init__(self, caminho="dados/banco/", nomeArq="Clientes"):

@@ -1,2 +1,2 @@
 15,824,Jonas,654321,password,False,
-16,123456,Jonas,password,654321,True,
+16,123456,Jonas,password,654321,False,

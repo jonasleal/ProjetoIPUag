@@ -1,7 +1,8 @@
-from negocio.Excecoes import *
-from entidades.Cliente import *
-from dados.DOM.DOMCliente import *
-from dados.RepositorioCliente import *
+from Negocio.Excecoes import *
+from Entidades.Cliente import *
+from Entidades.Usuario import *
+from Dados.DOM.DOMCliente import *
+from Dados.RepositorioCliente import *
 
 class GestaoCliente(object):
     def __init__(self):
@@ -24,9 +25,11 @@ class GestaoCliente(object):
         cpf = str(cpf)
         return self.repCliente.buscarPorCpf(cpf)
     
-    def login(self,cpf , senha):
-        cpf = str(cpf)
-        senha = str(senha)
+    def login(self,usuario):
+        if not isinstance(usuario, Usuario):
+            raise TipoInvalidoException("Nao e um usuario")
+        cpf = str(usuario.getCpf())
+        senha = str(usuario.getSenha())
         cliente = self.repCliente.buscarPorCpf(cpf)
         
         if cliente == None:

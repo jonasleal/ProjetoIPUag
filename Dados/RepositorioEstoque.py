@@ -18,7 +18,7 @@ class RepositorioEstoque(object):
     def ListarRoupas(self):
         return self.dados.ListarRoupas()
 
-    def ListarRoupasOferta(self):
+    def ListarRoupas(self):
         return self.dados.ListarRoupasOferta()
 
     

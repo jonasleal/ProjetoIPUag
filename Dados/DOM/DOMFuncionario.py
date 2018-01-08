@@ -5,18 +5,16 @@ from Entidades.Gerente import *
 from Negocio.Excecoes import *
 
 class DOMFuncionario(object):
-    
     def __init__(self, caminho="dados/banco/", nomeArq="Funcionarios"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
-        self.separador = ";"
+        self.separador = ","
         GerarArquivo().criarPasta(self.caminho)
         GerarArquivo().criarArquivo(self.caminho,self.nomeArq)
-
-    def __criarFuncionario(self, dados):    
+    def __criarFuncionario(self, dados):
         saida = Funcionario(dados[1], dados[2], dados[3], dados[4], dados[0])
-    
-        if dados[5].strip() == "True":
+        
+        if dados[5] == "True":
             saida = Gerente(saida)
         return saida
     
@@ -29,7 +27,7 @@ class DOMFuncionario(object):
         linha += str(funcionario.getNome()) + self.separador
         linha += str(funcionario.getSenha()) + self.separador
         linha += str(funcionario.getPis()) + self.separador
-        linha += str(isGerente)
+        linha += str(isGerente) + self.separador
         return linha
             
     def salvar(self, funcionario):
@@ -37,24 +35,28 @@ class DOMFuncionario(object):
         if not isinstance(funcionario , Funcionario):
             raise TipoInvalidoException("Nao e um funcionario")
         
+        
         ident = GerarId().proximo()
         funcionario.setIdent(ident)
         linha = self.__criarLinha(funcionario)
-        linha += "\n"
+        linha +=  "\n"
         arquivo = open(self.caminho + self.nomeArq, 'a')
+        
         arquivo.write(linha)
         arquivo.close()
         return funcionario
     
+    
+    
     def buscarPorCpf(self, cpf):
         cpf = str(cpf)
         funcionario = None
-        arquivo = open(self.caminho + self.nomeArq, 'r')
+        arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
-        arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
-            if linha[1] == str(cpf):
+            
+            if str(linha[1]) == cpf:
                 funcionario = self.__criarFuncionario(linha)
         return funcionario
     
@@ -63,10 +65,9 @@ class DOMFuncionario(object):
         funcionario = None
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
-        arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
-            if linha[4] == str(pis):
+            if str(linha[4]) == pis:
                 funcionario = self.__criarFuncionario(linha)
         return funcionario
     
@@ -75,7 +76,6 @@ class DOMFuncionario(object):
         funcionario = None
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
-        arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
             if int(linha[0]) == ident:

@@ -22,7 +22,7 @@ class DOMCliente(object):
         linha = str(cliente.getIdent()) + self.separador
         linha += str(cliente.getCpf()) + self.separador
         linha += str(cliente.getNome()) + self.separador
-        linha += str(cliente.getSenha()) + "\n"
+        linha += str(cliente.getSenha()) + self.separador + "\n"
         arquivo.write(linha)
         arquivo.close()
         return cliente

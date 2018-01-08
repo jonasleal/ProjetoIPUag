@@ -1,3 +1,2 @@
-29;20932019;irineu;shepo;654321;False
-30;265362;paladins;biscoito;1231;False
-31;13213;andro;rock;23;False
+15,824,Jonas,654321,password,False,
+16,123456,Jonas,password,654321,False,

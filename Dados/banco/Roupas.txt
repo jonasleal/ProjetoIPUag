@@ -1,0 +1,2 @@
+24;camisa tarr;P;BlackTie;Masculino;60;0;7
+25;camisa lacoste algodao;P;SocialEsportivo;Masculino;60;0;7

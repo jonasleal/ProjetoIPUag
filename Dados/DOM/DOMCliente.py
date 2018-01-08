@@ -51,14 +51,4 @@ class DOMCliente(object):
             if int(linha[0]) == ident:
                 cliente = self.__criarCliente(linha)
         return cliente
-        
-#    def login(self, CpfCli, SenhaCli):
-#        arq = open(self.caminho + self.nomeArq, 'r')
-#        lista = arq.readlines()
-#        usuario = None
-#        for i in range(len(lista)):
-#            iD = lista[i].split(self.separador)
-#            if iD[1] == str(CpfCli) and iD[3] == SenhaCli:
-#                usuario = self.__criarCliente(iD)
-#        return usuario
-        
+    

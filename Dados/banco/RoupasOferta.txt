@@ -1,1 +1,0 @@
-20;teste;G;tipo1;genero;50.0;0;1

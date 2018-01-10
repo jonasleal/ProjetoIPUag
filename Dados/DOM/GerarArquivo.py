@@ -1,14 +1,16 @@
 import os
+
 class GerarArquivo(object):
+
     def __init__(self):
         pass
      
     def criarPasta(self,nome):
+
         try:
             os.stat(nome)
-        
         except:
-            os.mkdir(nome)
+            os.makedirs(nome)
  
      
     def criarArquivo(self, caminho, nomeArq):

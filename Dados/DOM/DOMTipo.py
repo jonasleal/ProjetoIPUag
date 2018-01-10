@@ -2,8 +2,10 @@ from GerarId import *
 from GerarArquivo import *
 from Entidades.Tipo import *
 from Negocio.Excecoes import *
+
 class DOMTipo(object):
-    def __init__(self, caminho="dados/banco/", nomeArq="Tipos"):
+    
+    def __init__(self, caminho="dados/banco/Estoque", nomeArq="Tipos"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
         self.separador = ","

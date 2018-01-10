@@ -5,7 +5,7 @@ from Entidades.Gerente import *
 from Negocio.Excecoes import *
 
 class DOMFuncionario(object):
-    def __init__(self, caminho="dados/banco/", nomeArq="Funcionarios"):
+    def __init__(self, caminho="dados/banco/Funcionarios", nomeArq="Funcionarios"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
         self.separador = ","

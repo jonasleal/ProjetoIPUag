@@ -54,7 +54,6 @@ class DOMFuncionario(object):
         arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
-            
             if str(linha[1]) == cpf:
                 funcionario = self.__criarFuncionario(linha)
         return funcionario
@@ -76,6 +75,7 @@ class DOMFuncionario(object):
         funcionario = None
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
+        arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
             if int(linha[0]) == ident:
@@ -101,9 +101,9 @@ class DOMFuncionario(object):
         listaGerentes = []
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
+        arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
-            
             if str(linha[5]) == "True":
                  listaGerentes.append(self.__criarFuncionario(linha))
         return listaGerentes

@@ -96,3 +96,14 @@ class DOMFuncionario(object):
         arquivo.writelines(linhas)
         arquivo.close()
         return funcionario
+    
+    def listarTodosGerentes(self):
+        listaGerentes = []
+        arquivo = open(self.caminho + self.nomeArq,"r")
+        linhas = arquivo.readlines()
+        for linha in linhas:
+            linha = linha.split(self.separador)
+            
+            if str(linha[5]) == "True":
+                 listaGerentes.append(self.__criarFuncionario(linha))
+        return listaGerentes

@@ -16,3 +16,6 @@ class RepositorioFuncionario(object):
 
     def alterar(self,funcionario):
         return self.dados.alterar(funcionario)
+    
+    def listarTodosGerentes(self):
+        return self.dados.listarTodosGerentes()

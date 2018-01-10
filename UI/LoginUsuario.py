@@ -27,7 +27,7 @@ class LoginUsuario(object):
         return funcionario
 
     def gerente(self):
-        usuario = self.s__logar()
+        usuario = self.__logar()
         gerente = False
         try:
             gerente = Fachada().loginGerente(usuario)

@@ -39,6 +39,7 @@ class DOMCliente(object):
             linha = linha.split(self.separador)
             if str(linha[1]) == cpf:
                 cliente = self.__criarCliente(linha)
+        arquivo.close()
         return cliente
     
     def recuperar(self, ident):
@@ -50,5 +51,5 @@ class DOMCliente(object):
             linha = linha.split(self.separador)
             if int(linha[0]) == ident:
                 cliente = self.__criarCliente(linha)
+        arquivo.close()
         return cliente
-    

@@ -52,6 +52,13 @@ class GestaoFuncionario(object):
         gerente = Gerente(funcionario)
         return self.repFuncionario.alterar(gerente)
     
+    def primeiroAcesso(self):
+        listaGerentes = self.repFuncionario.listarTodosGerentes()
+        if len(listaGerentes) == 0:
+            funcionario = self.cadastrar(Funcionario("123", "Administrador", "123", "000"))
+            return self.tornarGerente(funcionario)
+        raise JaCadastradoException("Ja existe gerente cadastrado.")
+        
     def revogarGerente(self, gerente):
         if not isinstance(gerente, Funcionario):
             raise TipoInvalidoException("Nao e um funcionario.")
@@ -59,4 +66,10 @@ class GestaoFuncionario(object):
             raise TipoInvalidoException("Nao e um gerente.")
         funcionario = Funcionario(gerente.getCpf(), gerente.getNome(),gerente.getSenha(), gerente.getPis(),  gerente.getIdent())
         return self.repFuncionario.alterar(funcionario)
+    
+    def listarTodosGerentes(self):
+        return self.repFuncionario.listarTodosGerentes()
+    
+    def listarTodosFuncionarios(self):
+        return self.repFuncionario.listarTodosFuncionarios()
         

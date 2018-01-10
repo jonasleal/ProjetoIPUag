@@ -1,7 +1,11 @@
+from Entidades.Tipo import *
+from Entidades.Estilo import *
 from Entidades.Usuario import *
 from Entidades.Gerente import *
 from Entidades.Funcionario import *
 from Fachada.Fachada import *
+from Negocio.Excecoes import *
+
 class Cadastrar(object):
     def __dadosUsuario(self):
         nome = raw_input("Nome completo: ")
@@ -14,6 +18,13 @@ class Cadastrar(object):
         pis = raw_input("PIS: ")
         return Funcionario(usuario.getCpf(), usuario.getNome(), usuario.getSenha(), pis)
     
+    def __dadosTipo(self):
+        nome = raw_input("Tipo: ")
+        return Tipo(nome)
+    
+    def __dadosEstilo(self):
+        nome = raw_input("Estilo: ")
+        return Estilo(nome)
     
     def cliente(self):
         try:
@@ -30,9 +41,23 @@ class Cadastrar(object):
         except(JaCadastradoException, TipoInvalidoException)as e:
             print e.getMessage()
     
-    def gerente(self):
+    def primeiroAcesso(self):
         try:
-            gerente = Gerente(self.__dadosFuncionario())
-            return Fachada().cadastrarGerente( gerente)
+            return Fachada().primeiroAcesso()
         except(JaCadastradoException, TipoInvalidoException)as e:
             print e.getMessage()
+            
+    def tipo(self):
+        try:
+            tipo = self.__dadosTipo()
+            return Fachada().cadastrarTipo(tipo)
+        except(JaCadastradoException, TipoInvalidoException)as e:
+            print e.getMessage()
+            
+    def estilo(self):
+        try:
+            estilo = self.__dadosEstilo()
+            return Fachada().cadastrarEstilo(estilo)
+        except(JaCadastradoException, TipoInvalidoException)as e:
+            print e.getMessage()
+            

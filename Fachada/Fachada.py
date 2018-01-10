@@ -1,9 +1,13 @@
+from Negocio.GestaoTipo import *
+from Negocio.GestaoEstilo import *
 from Negocio.GestaoCliente import *
 from Negocio.GestaoFuncionario import *
 
 class Fachada(object):
     def __init__(self):
         self.gCliente = GestaoCliente()
+        self.gTipo = GestaoTipo()
+        self.gEstilo = GestaoEstilo()
         self.gFuncionario = GestaoFuncionario()
         
     def cadastrarCliente(self, cliente):
@@ -24,3 +28,23 @@ class Fachada(object):
     def loginFuncionario(self, usuario):
         return self.gFuncionario.login(usuario)
     
+    def primeiroAcesso(self):
+        return self.gFuncionario.primeiroAcesso()
+    
+    def listarTodosGerentes(self):
+        return self.gFuncionario.listarTodosGerentes()
+    
+    def listarTodosFuncionarios(self):
+        return self.gFuncionario.listarTodosFuncionarios()
+    
+    def cadastrarTipo(self, tipo):
+        return self.gTipo.cadastrar(tipo)
+    
+    def listarTodosTipos(self):
+        return self.gTipo.listarTodos()
+    
+    def cadastrarEstilo(self, estilo):
+        return self.gEstilo.cadastrar(estilo)
+    
+    def listarTodosEstilos(self):
+        return self.gEstilo.listarTodos()

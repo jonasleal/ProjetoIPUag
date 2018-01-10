@@ -6,6 +6,8 @@ from Entidades.Funcionario import *
 #DOMs
 from Dados.DOM.DOMCliente import *
 from Dados.DOM.DOMFuncionario import *
+from Dados.DOM.DOMTipo import *
+from Dados.DOM.DOMEstilo import *
 #Negocio
 from Negocio.GestaoCliente import *
 from Negocio.GestaoFuncionario import *
@@ -57,20 +59,30 @@ def testarRevogarPromocao(fachada, funcionario):
         print e.getMessage()
     return funcionario
         
-f = Funcionario("123456", "Jonas","password", "654321")
-f2 = Funcionario("824", "Jonas", "654321", "password")
-c = Cliente("106", "Jonas Jr", "senha")
-fachada = Fachada()
+#f = Funcionario("123456", "Jonas","password", "654321")
+#f2 = Funcionario("824", "Jonas", "654321", "password")
+#c = Cliente("106", "Jonas Jr", "senha")
+#fachada = Fachada()
+#
+#print "------ Cliente --------"
+#testarCliente(fachada, c)
+#print "------ Funcionario --------"
+#testarFuncionario(fachada, f2)
+#f = testarFuncionario(fachada, f)
+#print "------ Promover --------"
+#f = testarPromover(fachada, f)
+#print type(f)
+#print "------ Despromover --------"
+#f = testarRevogarPromocao(fachada, f)
+#print type(f)
+#print "fim"
+tipos = Fachada().listarTodosTipos()
+for tipo in tipos:
+    print tipo.getIdent()
 
-print "------ Cliente --------"
-testarCliente(fachada, c)
-print "------ Funcionario --------"
-testarFuncionario(fachada, f2)
-f = testarFuncionario(fachada, f)
-print "------ Promover --------"
-f = testarPromover(fachada, f)
-print type(f)
-print "------ Despromover --------"
-f = testarRevogarPromocao(fachada, f)
-print type(f)
-print "fim"
+estilos = Fachada().listarTodosEstilos()
+for estilo in estilos:
+     print estilo.getIdent()
+     
+print DOMTipo().recuperar(4)
+print DOMEstilo().recuperar(5)

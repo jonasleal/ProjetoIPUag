@@ -4,14 +4,14 @@ from Entidades.Roupa import *
 
 class DOMEstoque(object):
     
-    def __init__(self, caminho="dados/banco/", nomeArq="Roupas"):
+    def __init__(self, caminho="dados/banco/Estoque", nomeArq="Roupas"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
         self.separador = ";"
         GerarArquivo().criarPasta(self.caminho)
         GerarArquivo().criarArquivo(self.caminho,self.nomeArq)
             
-    def CadastrarRoupa(self, roupa, quantidade):
+    def CadastrarRoupa(self, roupa, tipo, estilo, quantidade):
 
         ident = GerarId().proximo()
         roupa.setID(ident)
@@ -19,15 +19,17 @@ class DOMEstoque(object):
         linha = str(roupa.getID()) + self.separador
         linha += str(roupa.getNome()) + self.separador
         linha += str(roupa.getTamanho()) + self.separador
-        linha += str(roupa.getTipo()) + self.separador
+        linha += str(roupa.getMedidas()) + self.separador
         linha += str(roupa.getGenero()) + self.separador
+        linha += str(tipo.getNome()) + self.separador
+        linha += str(estilo.getNome()) + self.separador
         linha += str(roupa.getValor()) + self.separador
         linha += str(roupa.getDesconto()) + self.separador
         linha += str(quantidade) + "\n"
         arquivo.write(linha)
         arquivo.close()
 
-    def CadastrarRoupaOferta(self, roupa, quantidade):
+    def CadastrarRoupaOferta(self, roupa, tipo, estilo, quantidade):
 
         ident = GerarId().proximo()
         roupa.setID(ident)
@@ -35,8 +37,10 @@ class DOMEstoque(object):
         linha = str(roupa.getID()) + self.separador
         linha += str(roupa.getNome()) + self.separador
         linha += str(roupa.getTamanho()) + self.separador
-        linha += str(roupa.getTipo()) + self.separador
+        linha += str(roupa.getMedidas()) + self.separador
         linha += str(roupa.getGenero()) + self.separador
+        linha += str(tipo.getNome()) + self.separador
+        linha += str(estilo.getNome()) + self.separador
         linha += str(roupa.getValor()) + self.separador
         linha += str(roupa.getDesconto()) + self.separador
         linha += str(quantidade) + "\n"
@@ -51,7 +55,7 @@ class DOMEstoque(object):
             linha = linha.split(self.separador)
             if int(linha[0]) == iD:
                 roupa = str(linha[0])+'-'+ str(linha[1])+'-'+ str(linha[2])+'-'+ str(linha[3])+'-'+ str(linha[4])
-                roupa += '-'+ str(linha[5])+'-'+ str(linha[6])+'-'+ str(linha[7]).strip() 
+                roupa += '-'+ str(linha[5])+'-'+ str(linha[6])+'-'+ str(linha[7])+'-'+ str(linha[8])+'-'+ str(linha[9]).strip() 
         print roupa
         
     def RecuperarRoupaOferta(self, iD):
@@ -62,7 +66,7 @@ class DOMEstoque(object):
             linha = linha.split(self.separador)
             if int(linha[0]) == iD:
                 roupa = str(linha[0])+'-'+ str(linha[1])+'-'+ str(linha[2])+'-'+ str(linha[3])+'-'+ str(linha[4])
-                roupa += '-'+ str(linha[5])+'-'+ str(linha[6])+'-'+ str(linha[7]).strip() 
+                roupa += '-'+ str(linha[5])+'-'+ str(linha[6])+'-'+ str(linha[7])+'-'+ str(linha[8])+'-'+ str(linha[9]).strip() 
         print roupa
 
     def ListarRoupas(self):

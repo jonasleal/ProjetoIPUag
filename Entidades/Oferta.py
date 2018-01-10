@@ -6,5 +6,5 @@ class Oferta:
     def getDesconto(self):
         return self.__desconto
 
-    def setDesconto(self, Novadesconto):
-        self.__desconto = Novadesconto
+    def setDesconto(self, NovoDesconto):
+        self.__desconto = NovoDesconto

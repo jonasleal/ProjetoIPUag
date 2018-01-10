@@ -46,13 +46,12 @@ class DOMFuncionario(object):
         arquivo.close()
         return funcionario
     
-    
-    
     def buscarPorCpf(self, cpf):
         cpf = str(cpf)
         funcionario = None
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
+        arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
             
@@ -65,6 +64,7 @@ class DOMFuncionario(object):
         funcionario = None
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
+        arquivo.close()
         for linha in linhas:
             linha = linha.split(self.separador)
             if str(linha[4]) == pis:

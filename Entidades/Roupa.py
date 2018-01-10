@@ -26,9 +26,6 @@ class Roupa(Oferta, Tipo):
 
     def getGenero(self):
         return self.__genero
-    
-    def setGenero(self, NovoGenero):
-        self.__genero = NovoGenero
 
     def setID(self, NovoID):
         self.__iD = NovoID

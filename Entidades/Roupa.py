@@ -1,16 +1,15 @@
 from Oferta import *
-from Tipo import *
 
-class Roupa(Oferta, Tipo):
+class Roupa:
 
-    def __init__(self, nome, tamanho, tipo, genero, valor, desconto = 0, iD = 0):
+    def __init__(self, nome, tamanho, medidas, genero, valor, desconto = 0, iD = 0):
         self.__nome = nome
         self.__tamanho = tamanho
+        self.__medidas = medidas
         self.__valor = valor
         self.__iD = iD
         self.__genero = genero
-        Tipo.__init__(self, tipo)
-        Oferta.__init__(self, desconto)
+        self.__oferta = Oferta(desconto) 
     
     def getNome(self):
         return self.__nome
@@ -26,6 +25,15 @@ class Roupa(Oferta, Tipo):
 
     def getGenero(self):
         return self.__genero
+
+    def getMedidas(self):
+        return self.__medidas
+
+    def getDesconto(self):
+        return self.__oferta.getDesconto()
+
+    def setDesconto(self, NovoDesconto):
+        self.__oferta.setDesconto(NovoDesconto)
 
     def setID(self, NovoID):
         self.__iD = NovoID

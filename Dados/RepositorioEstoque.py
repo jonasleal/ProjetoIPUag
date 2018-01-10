@@ -3,11 +3,11 @@ class RepositorioEstoque(object):
     def __init__(self, dados):
         self.dados = dados
         
-    def CadastrarRoupa(self, roupa, quantidade):
-        return self.dados.CadastrarRoupa(roupa, quantidade)
+    def CadastrarRoupa(self, roupa, tipo, estilo, quantidade):
+        return self.dados.CadastrarRoupa(roupa, tipo, estilo, quantidade)
 
-    def CadastrarRoupaOferta(self, roupa, quantidade):
-        return self.dados.CadastrarRoupaOferta(roupa, quantidade)
+    def CadastrarRoupaOferta(self, roupa, tipo, estilo, quantidade):
+        return self.dados.CadastrarRoupaOferta(roupa, tipo, estilo, quantidade)
     
     def RecuperarRoupa(self, iD):
         return self.dados.RecuperarRoupa(iD)

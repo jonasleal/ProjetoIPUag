@@ -22,7 +22,7 @@ class __GeradorId(object):
         arquivo.close()
         return ident
 __instancia = None
-def GerarId(caminho="dados/banco/Gerador", nomeArq="GeradorId.txt"):
+def GerarId(caminho="dados/banco/Gerador/", nomeArq="GeradorId.txt"):
     global __instancia
     if not __instancia:
         __instancia = __GeradorId(caminho, nomeArq)

@@ -4,7 +4,7 @@ from Entidades.Roupa import *
 
 class DOMEstoque(object):
     
-    def __init__(self, caminho="dados/banco/Estoque", nomeArq="Roupas"):
+    def __init__(self, caminho="dados/banco/Estoque/", nomeArq="Roupas"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
         self.separador = ";"

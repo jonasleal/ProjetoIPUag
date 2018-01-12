@@ -5,10 +5,10 @@ from Entidades.Gerente import *
 from Negocio.Excecoes import *
 
 class DOMFuncionario(object):
-    def __init__(self, caminho="dados/banco/Funcionarios", nomeArq="Funcionarios"):
+    def __init__(self, caminho="dados/banco/Funcionarios/", nomeArq="Funcionarios"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
-        self.separador = ","
+        self.separador = ";"
         GerarArquivo().criarPasta(self.caminho)
         GerarArquivo().criarArquivo(self.caminho,self.nomeArq)
     def __criarObjeto(self, dados):

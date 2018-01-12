@@ -5,10 +5,10 @@ from Negocio.Excecoes import *
 
 class DOMTipo(object):
     
-    def __init__(self, caminho="dados/banco/Estoque", nomeArq="Tipos"):
+    def __init__(self, caminho="dados/banco/Estoque/", nomeArq="Tipos"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
-        self.separador = ","
+        self.separador = ";"
         GerarArquivo().criarPasta(self.caminho)
         GerarArquivo().criarArquivo(self.caminho,self.nomeArq)
         

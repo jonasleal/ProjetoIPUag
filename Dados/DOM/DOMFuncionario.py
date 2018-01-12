@@ -11,7 +11,7 @@ class DOMFuncionario(object):
         self.separador = ","
         GerarArquivo().criarPasta(self.caminho)
         GerarArquivo().criarArquivo(self.caminho,self.nomeArq)
-    def __criarFuncionario(self, dados):
+    def __criarObjeto(self, dados):
         saida = Funcionario(dados[1], dados[2], dados[3], dados[4], dados[0])
         
         if dados[5] == "True":
@@ -55,7 +55,7 @@ class DOMFuncionario(object):
         for linha in linhas:
             linha = linha.split(self.separador)
             if str(linha[1]) == cpf:
-                funcionario = self.__criarFuncionario(linha)
+                funcionario = self.__criarObjeto(linha)
         return funcionario
     
     def buscarPorPis(self, pis):
@@ -67,7 +67,7 @@ class DOMFuncionario(object):
         for linha in linhas:
             linha = linha.split(self.separador)
             if str(linha[4]) == pis:
-                funcionario = self.__criarFuncionario(linha)
+                funcionario = self.__criarObjeto(linha)
         return funcionario
     
     def recuperar(self, ident):
@@ -79,7 +79,7 @@ class DOMFuncionario(object):
         for linha in linhas:
             linha = linha.split(self.separador)
             if int(linha[0]) == ident:
-                funcionario = self.__criarFuncionario(linha)
+                funcionario = self.__criarObjeto(linha)
         return funcionario
     
     def alterar(self, funcionario):
@@ -105,5 +105,5 @@ class DOMFuncionario(object):
         for linha in linhas:
             linha = linha.split(self.separador)
             if str(linha[5]) == "True":
-                 listaGerentes.append(self.__criarFuncionario(linha))
+                 listaGerentes.append(self.__criarObjeto(linha))
         return listaGerentes

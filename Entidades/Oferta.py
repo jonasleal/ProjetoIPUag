@@ -8,3 +8,5 @@ class Oferta:
 
     def setDesconto(self, NovoDesconto):
         self.__desconto = NovoDesconto
+    def __str__(self):
+        return "%s%" % (self.__desconto)

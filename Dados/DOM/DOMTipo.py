@@ -12,7 +12,7 @@ class DOMTipo(object):
         GerarArquivo().criarPasta(self.caminho)
         GerarArquivo().criarArquivo(self.caminho,self.nomeArq)
         
-    def __criarTipo(self, dados):
+    def __criarObjeto(self, dados):
         return Tipo(dados[1], dados[0])
         
     def __criarLinha(self, tipo):
@@ -44,7 +44,7 @@ class DOMTipo(object):
         for linha in linhas:
             linha = linha.split(self.separador)
             if int(linha[0]) == ident:
-                tipo = self.__criarTipo(linha)
+                tipo = self.__criarObjeto(linha)
         return tipo
     
     def buscarPorNome(self, nome):
@@ -55,7 +55,7 @@ class DOMTipo(object):
         for linha in linhas:
             linha = linha.split(self.separador)
             if str(linha[1]) == nome:
-                tipo = self.__criarTipo(linha)
+                tipo = self.__criarObjeto(linha)
         return tipo
         
     
@@ -65,5 +65,5 @@ class DOMTipo(object):
         linhas = arquivo.readlines()
         for linha in linhas:
             linha = linha.split(self.separador)
-            listaTipos.append(self.__criarTipo(linha))
+            listaTipos.append(self.__criarObjeto(linha))
         return listaTipos

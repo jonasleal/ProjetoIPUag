@@ -1,66 +1,73 @@
 from GerarId import *
 from GerarArquivo import *
-from Entidades.Estilo import *
+from Entidades.Roupa import *
 from Negocio.Excecoes import *
 
-class DOMEstilo(object):
+class DOMRoupa(object):
     
-    def __init__(self, caminho="dados/banco/Estoque", nomeArq="Estilos"):
+    def __init__(self, caminho="dados/banco/Estoque", nomeArq="Roupas"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
-        self.separador = ","
+        self.separador = ";"
         GerarArquivo().criarPasta(self.caminho)
         GerarArquivo().criarArquivo(self.caminho,self.nomeArq)
         
     def __criarObjeto(self, dados):
-        return Estilo(dados[1], dados[0])
+        return Roupa(dados[1], dados[0])
         
-    def __criarLinha(self, tipo):
-        linha = str(tipo.getIdent()) +self.separador
-        linha += str(tipo.getNome()) +self.separador
+    def __criarLinha(self, roupa):
+        linha = str(roupa.getIdent()) +self.separador
+        linha += str(roupa.getNome()) +self.separador
+        linha += str(roupa.getTamanho()) +self.separador
+        linha += str(roupa.getGenero()) +self.separador
+        linha += str(roupa.getValor()) +self.separador
+        linha += str(roupa.getDesconto()) +self.separador
         return linha
         
-    def salvar(self, estilo):
-        if not isinstance(estilo , Estilo):
-            raise TipoInvalidoException("Nao e um estilo de roupa")
+    def salvar(self, roupa):
+        
+        if not isinstance(roupa , Roupa):
+            raise RoupaInvalidoException("Nao e um roupa")
         
         ident = GerarId().proximo()
-        estilo.setIdent(ident)
-        linha = self.__criarLinha(estilo)
+        roupa.setIdent(ident)
+        linha = self.__criarLinha(roupa)
         linha +=  "\n"
         arquivo = open(self.caminho + self.nomeArq, 'a')
         
         arquivo.write(linha)
         arquivo.close()
-        return estilo
+        print roupa.getIdent()
+        return roupa
     
     def recuperar(self, ident):
         ident = int(ident)
-        estilo = None
+        roupa = None
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
         for linha in linhas:
             linha = linha.split(self.separador)
             if int(linha[0]) == ident:
-                estilo = self.__criarObjeto(linha)
-        return estilo
+                roupa = self.__criarObjeto(linha)
+        return roupa
     
     def buscarPorNome(self, nome):
         nome = str(nome)
-        estilo = None
+        roupa = None
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
         for linha in linhas:
             linha = linha.split(self.separador)
             if str(linha[1]) == nome:
-                estilo = self.__criarObjeto(linha)
-        return estilo
+                roupa = self.__criarObjeto(linha)
+        return roupa
+        
     
     def listarTodos(self):
-        listaEstilos = []
+        listaRoupas = []
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
         for linha in linhas:
             linha = linha.split(self.separador)
-            listaEstilos.append(self.__criarObjeto(linha))
-        return listaEstilos
+            listaRoupas.append(self.__criarObjeto(linha))
+        return listaRoupas

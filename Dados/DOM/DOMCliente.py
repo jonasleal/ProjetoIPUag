@@ -4,7 +4,7 @@ from Entidades.Cliente import *
 from Negocio.Excecoes import *
 
 class DOMCliente(object):
-    def __init__(self, caminho="dados/banco/Cliente", nomeArq="Clientes"):
+    def __init__(self, caminho="dados/banco/Cliente/", nomeArq="Clientes"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
         self.separador = ","

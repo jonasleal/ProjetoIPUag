@@ -5,10 +5,10 @@ from Negocio.Excecoes import *
 
 class GestaoEstoque:
 
-    def __init__:
+    def __init__(self):
         self.repEstoque = RepositorioEstoque(DOMEstoque())
 
-    def CadastrarRoupaEstoque(self, roupa, tipo, estilo, quantidade):
+    def CadastrarRoupaEstoque(self, roupa, quantidade):
 
         if not isinstance(roupa, Roupa):
             raise TipoInvalidoException("Nao eh uma roupa")
@@ -19,13 +19,10 @@ class GestaoEstoque:
         return self.repEstoque.ListarRoupas()
 
     def ListarRoupasOferta(self):
-        return self.repEstoque.ListarRoupasOferta()
+        return self.repEstoque.ListarOfertas()
 
     def RecuperarRoupa(self, iD):
         return self.repEstoque.RecuperarRoupa(iD)
-
-    def RecuperarRoupa(self, iD):
-        return self.repEstoque.RecuperarRoupaOferta(iD)
     
     def CadastrarRoupasOferta(self, roupa, tipo, estilo, quantidade):
         return self.repEstoque.CadastrarRoupaOferta(roupa, tipo, estilo, quantidade)

@@ -9,13 +9,15 @@ class Fachada(object):
         self.gTipo = GestaoTipo()
         self.gEstilo = GestaoEstilo()
         self.gFuncionario = GestaoFuncionario()
-        
+    
+    #Cliente
     def cadastrarCliente(self, cliente):
         return self.gCliente.cadastrar(cliente)
         
     def loginCliente(self, usuario):
         return self.gCliente.login(usuario)
-        
+    
+    #Funcionario
     def cadastrarFuncionario(self, funcionario):
         return self.gFuncionario.cadastrar(funcionario)
     
@@ -37,6 +39,7 @@ class Fachada(object):
     def listarTodosFuncionarios(self):
         return self.gFuncionario.listarTodosFuncionarios()
     
+    #Roupa
     def cadastrarTipo(self, tipo):
         return self.gTipo.cadastrar(tipo)
     
@@ -48,3 +51,16 @@ class Fachada(object):
     
     def listarTodosEstilos(self):
         return self.gEstilo.listarTodos()
+    
+    def cadastrarRoupa(self, roupa, quantidade):
+        return self.gEstoque.CadastrarRoupaEstoque(roupa, quantidade)
+    
+    def cadastrarRoupaOferta(self, roupa, desconto):
+        return self.gEstoque.CadastrarRoupaEstoque(roupa, desconto)
+    
+    def listarRoupas(self):
+        return self.gEstoque.ListarRoupas()
+    
+    def listarRoupasOferta(self):
+        return self.gEstoque.ListarRoupasOferta()
+    

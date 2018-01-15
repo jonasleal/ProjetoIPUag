@@ -76,6 +76,10 @@ def testarRevogarPromocao(fachada, funcionario):
 #f = testarRevogarPromocao(fachada, f)
 #print type(f)
 #print "fim"
+
+#Fachada().cadastrarTipo(Tipo("Calca"))
+Fachada().cadastrarEstilo(Estilo("Casual"))
+
 tipos = Fachada().listarTodosTipos()
 for tipo in tipos:
     print tipo.getIdent()
@@ -83,6 +87,3 @@ for tipo in tipos:
 estilos = Fachada().listarTodosEstilos()
 for estilo in estilos:
      print estilo.getIdent()
-     
-print DOMTipo().recuperar(4)
-print DOMEstilo().recuperar(5)

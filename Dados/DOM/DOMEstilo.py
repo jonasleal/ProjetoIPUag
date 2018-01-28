@@ -15,9 +15,9 @@ class DOMEstilo(object):
     def __criarObjeto(self, dados):
         return Estilo(dados[1], dados[0])
         
-    def __criarLinha(self, tipo):
-        linha = str(tipo.getIdent()) +self.separador
-        linha += str(tipo.getNome()) +self.separador
+    def __criarLinha(self, objeto):
+        linha = str(objeto.getIdent()) +self.separador
+        linha += str(objeto.getNome()) +self.separador
         return linha
         
     def salvar(self, estilo):

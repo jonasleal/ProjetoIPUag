@@ -1,6 +1,9 @@
 from Negocio.GestaoTipo import *
 from Negocio.GestaoEstilo import *
 from Negocio.GestaoCliente import *
+from Negocio.GestaoCompra import *
+from Negocio.GestaoEstoque import *
+from Negocio.GestaoRelatorio import *
 from Negocio.GestaoFuncionario import *
 
 class Fachada(object):
@@ -8,7 +11,10 @@ class Fachada(object):
         self.gCliente = GestaoCliente()
         self.gTipo = GestaoTipo()
         self.gEstilo = GestaoEstilo()
+        self.gCompra = GestaoCompra()
         self.gFuncionario = GestaoFuncionario()
+        self.gEstoque = GestaoEstoque()
+        self.gRelatorio = GestaoRelatorio()
     
     #Cliente
     def cadastrarCliente(self, cliente):
@@ -56,11 +62,26 @@ class Fachada(object):
         return self.gEstoque.CadastrarRoupaEstoque(roupa, quantidade)
     
     def cadastrarRoupaOferta(self, roupa, desconto):
-        return self.gEstoque.CadastrarRoupaEstoque(roupa, desconto)
+        return self.gEstoque.CadastrarRoupasOferta(roupa, desconto)
     
     def listarRoupas(self):
         return self.gEstoque.ListarRoupas()
     
     def listarRoupasOferta(self):
         return self.gEstoque.ListarRoupasOferta()
+    
+    #Compra
+    def addCarrinho(self, pedido):
+        return self.gCompra.adicionarCarrinho(pedido)
+    
+    def finalizarCompra(self):
+        return self.gCompra.finalizarCompra()
+    
+    def listarTodasCompras(self):
+        return self.gCompra.listarTodos()
+    
+    #GestaoRelatorio
+    
+    def relatorioLucroPorPeriodo(self, dataInicial, dataFinal):
+        return self.gRelatorio.lucroPorPeriodo(dataInicial, dataFinal)
     

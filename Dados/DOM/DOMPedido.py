@@ -1,11 +1,15 @@
 from GerarId import *
 from GerarArquivo import *
 from Entidades.Pedido import *
+
+from Dados.DOM.DOMCliente import *
+from Dados.DOM.DOMRoupa import *
+from Dados.DOM.DOMFuncionario import *
 from Entidades.PedidoPersonalizado import *
 from Negocio.Excecoes import *
 
-class DOMCliente(object):
-    def __init__(self, caminho="dados/banco/Cliente", nomeArq="Clientes"):
+class DOMPedido(object):
+    def __init__(self, caminho="dados/banco/Vendas/", nomeArq="Pedidos"):
         self.caminho = caminho
         self.nomeArq = nomeArq + ".txt"
         self.separador = ";"
@@ -15,8 +19,9 @@ class DOMCliente(object):
     def __criarLinha(self, pedido):
         
         linha = str(pedido.getIdent()) + self.separador
-        linha += str(pedido.getRoupa()) + self.separador
-        linha += str(pedido.getCliente()) + self.separador
+        linha += str(pedido.getRoupa().getID()) + self.separador
+        linha += str(pedido.getCliente().getIdent()) + self.separador
+        linha += str(pedido.getFuncionario().getIdent()) + self.separador
         linha += str(pedido.getQuantidade()) + self.separador
         if isinstance(pedido, PedidoPersonalizado):
             linha += str(pedido.getMedidas()) + self.separador
@@ -25,16 +30,15 @@ class DOMCliente(object):
     
     def __criarObjeto(self, dados):
         saida = None
-        if len(dados) < 6:
-            saida = Peido(dados[1], dados[2], dados[3], dados[0])
-        else:
-            saida = PedidoPersonalizado(dados[1], dados[2], dados[3], dados[4], dados[5], dados[0])
+        cliente = DOMCliente().recuperar(dados[2])
+        roupa = DOMRoupa().recuperar(dados[1])
+        funcionario = DOMFuncionario().recuperar(dados[3])
+        saida = Pedido(roupa, cliente, funcionario, dados[4], dados[0])
+        if len(dados) > 6:
+            saida = PedidoPersonalizado(saida, dados[5], dados[6])
         return saida 
             
     def salvar(self, pedido):
-        
-        if not isinstance(pedido , Cliente):
-            raise TipoInvalidoException("Nao e um pedido")
         
         ident = GerarId().proximo()
         pedido.setIdent(ident)
@@ -48,17 +52,15 @@ class DOMCliente(object):
     
     
     def buscarPorCliente(self, cliente):
-        if not isinstance(cliente , Cliente):
-            raise TipoInvalidoException("Nao e um cliente")
-        pedido = []
+        pedidos = []
         arquivo = open(self.caminho + self.nomeArq,"r")
         linhas = arquivo.readlines()
         for linha in linhas:
             linha = linha.split(self.separador)
-            if str(linha[1]) == cliente.getIdent():
+            if str(linha[2]) == cliente.getIdent():
                 pedido.appedn(self.__criarObjeto(linha))
         arquivo.close()
-        return pedido
+        return pedidos
     
     def recuperar(self, ident):
         ident = int(ident)

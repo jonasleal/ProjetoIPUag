@@ -20,6 +20,15 @@ class JaCadastradoException(Error):
     def __str__(self):
         return self.msg
     
+class NaoCadastradoException(Error):
+  
+    def __init__(self, msg):
+        self.msg = msg
+    def getMessage(self):
+        return self.msg
+    def __str__(self):
+        return self.msg
+    
 class CpfInvalidoException(Error):
   
     def __init__(self, msg):
@@ -30,6 +39,24 @@ class CpfInvalidoException(Error):
         return self.msg
 
 class SenhaInvalidoException(Error):
+  
+    def __init__(self, msg):
+        self.msg = msg
+    def getMessage(self):
+        return self.msg
+    def __str__(self):
+        return self.msg
+    
+class QuantidadeIsuficienteException(Error):
+  
+    def __init__(self, msg):
+        self.msg = msg
+    def getMessage(self):
+        return self.msg
+    def __str__(self):
+        return self.msg
+    
+class CompraNaoRealizadaException(Error):
   
     def __init__(self, msg):
         self.msg = msg

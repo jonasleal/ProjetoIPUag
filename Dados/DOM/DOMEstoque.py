@@ -56,8 +56,7 @@ class DOMEstoque(object):
             if int(linha[0]) == iD:
                 roupa = str(linha[0])+'-'+ str(linha[1])+'-'+ str(linha[2])+'-'+ str(linha[3])+'-'+ str(linha[4])
                 roupa += '-'+ str(linha[5])+'-'+ str(linha[6])+'-'+ str(linha[7])+'-'+ str(linha[8])+'-'+ str(linha[9]).strip() 
-        print roupa
-        
+      
     def RecuperarRoupaOferta(self, iD):
         roupa = ''
         arquivo = open(self.caminho + 'RoupasOferta.txt', 'r')
@@ -67,18 +66,18 @@ class DOMEstoque(object):
             if int(linha[0]) == iD:
                 roupa = str(linha[0])+'-'+ str(linha[1])+'-'+ str(linha[2])+'-'+ str(linha[3])+'-'+ str(linha[4])
                 roupa += '-'+ str(linha[5])+'-'+ str(linha[6])+'-'+ str(linha[7])+'-'+ str(linha[8])+'-'+ str(linha[9]).strip() 
-        print roupa
+       
 
     def ListarRoupas(self):
         arquivo = open(self.caminho + self.nomeArq, 'r')
         roupas = arquivo.readlines()
         for i in range(len(roupas)):
-            print roupas[i].strip()
+            pass
         arquivo.close()
 
     def ListarRoupasOferta(self):
         arquivo = open(self.caminho + 'RoupasOferta.txt', 'r')
         roupas = arquivo.readlines()
         for i in range(len(roupas)):
-            print roupas[i].strip()
+            pass
         arquivo.close()

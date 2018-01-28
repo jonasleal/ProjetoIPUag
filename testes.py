@@ -1,89 +1,86 @@
 #Entidades
+
+from Entidades.Tipo import *
+from Entidades.Roupa import *
+from Entidades.Estilo import *
 from Entidades.Cliente import *
 from Entidades.Gerente import *
 from Entidades.Usuario import *
 from Entidades.Funcionario import *
+from Entidades.Compra import *
 #DOMs
 from Dados.DOM.DOMCliente import *
 from Dados.DOM.DOMFuncionario import *
 from Dados.DOM.DOMTipo import *
 from Dados.DOM.DOMEstilo import *
+from Dados.DOM.DOMPedido import *
+from Dados.DOM.DOMCompra import *
+
+from Dados.RepositorioCompra import *
 #Negocio
 from Negocio.GestaoCliente import *
+from Negocio.GestaoEstoque import *
 from Negocio.GestaoFuncionario import *
+from Negocio.GestaoCompra import *
 #Excecoes
 from Negocio.Excecoes import *
 #Fachada
 from Fachada.Fachada import *
 
+#Clientes
+#cpf, nome, senha
+cli1 = Cliente("106", "Jonas", "106")
+cli2 = Cliente("549", "Ferreira", "549")
+
+#Funcionarios
+#cpf, nome, senha, pis,
+fun1 = Funcionario("014", "Leal","014", "pis014")
+
+#Tipos e estilo
+tipo1 = Tipo("Blusa")
+tipo2 = Tipo("Calca")
+
+estilo1 = Estilo("Casual")
+estilo2 = Estilo("Esportivo")
+estilo3 = Estilo("Classico")
+
+#Roupas
+#nome, tamanho, estilo, tipo, genero, valor, quantidade = 0,desconto = 0
+roupa1 = Roupa("roupa1", "G", Estilo("",4), Tipo("",3),"masculino", 50, 10)
+roupa2 = Roupa("roupa2", "P", Estilo("",4), Tipo("",3),"masculino", 30, 20)
+
+#Pedidos
+#roupa, cliente, funcionario, quantidade = 1, ident
 
 
 
-def testarCliente(fachada, cliente):
-    try:
-        fachada.cadastrarCliente(cliente)
-    except(TipoInvalidoException, JaCadastradoException) as e:
-        print e.getMessage()
 
-    try:
-        logado = fachada.loginCliente(cliente)
-        print logado.getIdent()
-    except (CpfInvalidoException, SenhaInvalidoException) as e:
-        print e.getMessage()
-        
-def testarFuncionario(fachada, funcionario):
-    try:
-        fachada.cadastrarFuncionario(funcionario)
-    except(TipoInvalidoException, JaCadastradoException) as e:
-        print e.getMessage()
-
-    try:
-        logado = fachada.loginFuncionario(funcionario)
-        print logado.getIdent()
-        print isinstance(logado , Gerente)
-        return logado
-    except (CpfInvalidoException, SenhaInvalidoException) as e:
-        print e.getMessage()
-
-def testarPromover(fachada, funcionario):
-    try:
-        funcionario = fachada.promoverFuncionario(funcionario)
-    except ( TipoInvalidoException) as e:
-        print e.getMessage()
-    return funcionario
-
-def testarRevogarPromocao(fachada, funcionario):
-    try:
-        funcionario = fachada.revogarGerencia(funcionario)
-    except ( TipoInvalidoException) as e:
-        print e.getMessage()
-    return funcionario
-        
-#f = Funcionario("123456", "Jonas","password", "654321")
-#f2 = Funcionario("824", "Jonas", "654321", "password")
-#c = Cliente("106", "Jonas Jr", "senha")
+##Cadastros
+#cli1 = Fachada().cadastrarCliente(cli1)
+#fun1 = Fachada().cadastrarFuncionario(fun1)
+#tipo1 = Fachada().cadastrarTipo(tipo1)
+#estilo1 = Fachada().cadastrarEstilo(estilo1)
+#roupa1 = Fachada().cadastrarRoupa(roupa1, 100)
+#roupa2 = Fachada().cadastrarRoupa(roupa2, 100)
+#roupa2 = Fachada().cadastrarRoupaOferta(roupa2, 50)
 #fachada = Fachada()
+#roupa1.setID(5)
+#ped1 = Pedido(roupa1, Cliente("","","", 1), Funcionario("014", "Leal","014", "pis014", 2), 1)
+#ped2 = Pedido(roupa1, Cliente("","","", 1), Funcionario("014", "Leal","014", "pis014", 2), 1)
+#ped3 = Pedido(roupa1, Cliente("","","", 1), Funcionario("014", "Leal","014", "pis014", 2), 1)
+#ped4 = Pedido(roupa1, Cliente("","","", 1), Funcionario("014", "Leal","014", "pis014", 2), 1)
+#fachada.addCarrinho(ped1)
+#fachada.addCarrinho(ped2)
+#fachada.addCarrinho(ped3)
+#fachada.addCarrinho(ped4)
+#fachada.finalizarCompra()
 #
-#print "------ Cliente --------"
-#testarCliente(fachada, c)
-#print "------ Funcionario --------"
-#testarFuncionario(fachada, f2)
-#f = testarFuncionario(fachada, f)
-#print "------ Promover --------"
-#f = testarPromover(fachada, f)
-#print type(f)
-#print "------ Despromover --------"
-#f = testarRevogarPromocao(fachada, f)
-#print type(f)
-#print "fim"
-
-#Fachada().cadastrarTipo(Tipo("Calca"))
-Fachada().cadastrarEstilo(Estilo("Casual"))
-
-tipos = Fachada().listarTodosTipos()
-for tipo in tipos:
-    print tipo.getIdent()
-
-estilos = Fachada().listarTodosEstilos()
-for estilo in estilos:
-     print estilo.getIdent()
+#lista = fachada.listarTodasCompras()
+#for i in lista:
+#    print i
+dataInicial = datetime.datetime.strptime("2016-01-01", '%Y-%m-%d')
+dataFinal = datetime.datetime.strptime("2019-01-30", '%Y-%m-%d')
+periodo = Fachada().relatorioLucroPorPeriodo(dataInicial, dataFinal)
+lucroMes = periodo.lucroPorMes()
+for i in lucroMes:
+    print i 

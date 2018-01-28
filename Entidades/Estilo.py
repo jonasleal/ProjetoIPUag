@@ -10,7 +10,7 @@ class Estilo(object):
         return self.ident
     
     def setIdent(self, ident):
-        self.indet = ident
+        self.ident = int(ident)
     
     def __str__(self):
         return self.nome

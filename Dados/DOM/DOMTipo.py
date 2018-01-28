@@ -33,7 +33,6 @@ class DOMTipo(object):
         
         arquivo.write(linha)
         arquivo.close()
-        print tipo.getIdent()
         return tipo
     
     def recuperar(self, ident):

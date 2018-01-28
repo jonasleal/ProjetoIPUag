@@ -1,8 +1,8 @@
 from Entidades.Pedido import *
 class PedidoPersonalizado(Pedido):
     
-    def __init__(self, roupa, cliente, quantidade = 1, medidas, observacoes = "", ident = 0):
-        Pedido.__init__(self, roupa, cliente, quantidade, ident)
+    def __init__(self, pedido, medidas, observacoes = ""):
+        Pedido.__init__(self, pedido.getRoupa(), pedido.getCliente(), pedido.getFuncionario(), pedido.getQuantidade(), pedido.getIdent())
         self.medidas = medidas 
         self.observacoes = observacoes
     
